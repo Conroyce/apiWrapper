@@ -19,7 +19,7 @@ module.exports = function() {
   this.append = function(name,data) {
     return fs.appendFile(name,data,function(err) {
       if (err) throw err;
-      console.log('The "data to append" was appended to file!');
+      console.log(data + ' was appended to file!');
     });
   };
 
@@ -30,4 +30,27 @@ module.exports = function() {
     });
   };
 
+  this.copy = function(source, target, cb) {
+    var cbCalled = false;
+
+    var rd = fs.createReadStream(source);
+    rd.on("error", function(err) {
+      done(err);
+    });
+    var wr = fs.createWriteStream(target);
+    wr.on("error", function(err) {
+      done(err);
+    });
+    wr.on("close", function(ex) {
+      done();
+    });
+    rd.pipe(wr);
+
+    var done = function(err) {
+      if (!cbCalled) {
+        cb(err);
+        cbCalled = true;
+      }
+    };
+  };
 };
