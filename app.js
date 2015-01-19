@@ -10,4 +10,5 @@ myFs.write("test.txt","will override test data");
 
 var crypto = new CryptApi();
 var secret_key = "pipe";
-crypto.encrypt("data",secret_key);
+var encrypted_data = crypto.encrypt("data",secret_key);
+crypto.decrypt(encrypted_data, secret_key);
