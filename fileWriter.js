@@ -1,8 +1,15 @@
 var fs = require('fs');
 
 module.exports = function() {
-  this.write = function(name,data) {
-    return fs.writeFileSync(name,data);
+  this.write = function(name,data,boo) {
+    var ans;
+    if (boo === false) {
+      var ran = Math.random()*1000;
+      ans = fs.writeFileSync(name+"_"+ran,data);
+    } else {
+      ans = fs.writeFileSync(name,data);
+    } 
+    return ans; 
   };
 
   this.append = function(name,data) {
