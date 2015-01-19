@@ -53,4 +53,38 @@ module.exports = function() {
       }
     };
   };
+
+  this.move = function(source,target) {
+    fs.rename(source,target,function(err) {
+      if (err) throw err;
+
+      fs.stat(target, function (err,stats) {
+        if (err) throw err;
+        console.log('stats: ' + JSON.stringify(stats));
+      });
+    })
+  };
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

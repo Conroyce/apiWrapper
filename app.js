@@ -8,6 +8,7 @@ myFs.print("test.txt","utf-8");
 // myFs.write("test.txt",'new data',false);
 myFs.write("test.txt","will override test data");
 myFs.copy("test.txt","test2.txt",function(err) { console.log(err); })
+myFs.move("test.txt","newTest.txt")
 
 
 var crypto = new CryptApi();
